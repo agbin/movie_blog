@@ -1,0 +1,24 @@
+{% extends "bookshop/base.html" %}
+{% block content %}
+
+{% load static %}
+
+    <!--{% if form %}-->
+        <!--<h2>Szukaj:</h2>-->
+        <!--<form action='{% url "search" %}' method="post">-->
+            <!--{% csrf_token %}-->
+            <!--{{form.as_p}}-->
+            <!--<input type="submit" value="Wduś guzik" class="btn btn-success">-->
+        <!--</form>-->
+    <!--{% else %}-->
+
+            {% for post in posts %}
+                <li style="font-size:25px"><a href="{% url 'post_list' post.id %}">{{ post.title }}</a></li><br>
+            {% empty %}
+            pusto
+
+            {% endfor %}
+
+    <!--{% endif %}-->
+
+{% endblock %}

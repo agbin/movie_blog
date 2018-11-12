@@ -1,0 +1,79 @@
+{% load static %}
+<html>
+    <head>
+        <title>Movie blog</title>
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+        <link rel="stylesheet" href="{% static 'items/style.css' %}">
+        <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Satisfy" />
+        <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Montserrat" >
+        <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext">
+        <link rel="stylesheet" href="{% static 'items/bootstrap.min.css' %}" media="screen, projection"/>
+    </head>
+    <body>
+        <div class="page-header">
+            <div class="row">
+
+                <!--add movie-->
+                <a href="{% url 'post_new' %}" class="top-menu"><span class="glyphicon glyphicon-plus"></span></a>
+
+                <!--title-->
+                <h1><a href="/">Movie Blog</a></h1>
+
+                <!--search-->
+                    <form method="GET" action="{% url 'search' %}">
+                        <div class="col-lg-4"></div>
+                        <div class="col-lg-4 ">
+                            <input type="text" name="q" placeholder="Wpisz tytuł filmu lub jego część.."  class="form-control input-lg" style="height: 6%; "/>
+                        </div>
+                        <div class="col-lg-1 ">
+                            <button type="submit" class="form-control btn btn-danger btn-lg" style="height: 6%;"><span class="glyphicon glyphicon-search"></span></button>
+                        </div>
+                        <div class="col-lg-3 "></div>
+                    </form>
+            </div>
+            <div class="row">
+
+                <!--login-->
+                <div class="header-right">
+                    {% if user.is_authenticated %}
+                        <a href="{% url 'logout' %}">
+                            <span class="glyphicon glyphicon-off" aria-hidden="true" style="font-size:20px"> logout</span>&nbsp;,
+                            {{request.user.username}}
+                        </a>
+                    {% else %}
+                        <a href="{% url 'login' %}">
+                            <span class="glyphicon glyphicon-off" aria-hidden="true" style="font-size:20px"> login</span>&nbsp;
+                        </a>
+                    {% endif %}
+                </div>
+
+                <!--register-->
+                <div class="header-right">
+                    <a href="{% url 'signup' %}">
+                        <span class="glyphicon glyphicon-user" aria-hidden="true" style="font-size:20px"> utwórz konto </span>&nbsp;
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="content container">
+            <div id="div_wrap">
+
+                <div id="div_one">
+                    <div class="col-md-8">
+                    {% block content %}
+
+                    {% endblock %}
+                    </div>
+                </div>
+                <div id="div_two">
+                    <div class="movies_10">
+                        {% block top %}
+
+                        {% endblock %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

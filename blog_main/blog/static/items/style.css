@@ -1,0 +1,213 @@
+
+.page-header {
+    background-color: #ff9400;
+    margin-top: 0;
+    padding: 20px 20px 20px 60px;
+}
+
+.page-header h1, .page-header h1 a, .page-header h1 a:visited, .page-header h1 a:active {
+    color: #ffffff;
+    font-size: 42pt;
+    text-decoration: none;
+}
+
+body.home {
+    /*background: url("../../../media/items/2018/10/15/iamlegend1.jpg");*/
+    background: url("images/landscape.jpg");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+
+}
+
+body.background1{
+    background: url("../../../media/items/2018/10/15/iamlegend1.jpg")
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+
+}
+
+
+.content {
+    margin-left: 40px;
+    background-color: #cce6ff
+
+}
+
+h1, h2, h3, h4 {
+    font-family: 'Lobster', cursive;
+}
+
+.date {
+    color: #828282;
+}
+
+.save {
+    float: right;
+}
+
+.post-form textarea, .post-form input {
+    width: 100%;
+}
+
+.top-menu, .top-menu:hover, .top-menu:visited {
+    color: #ffffff;
+    float: right;
+    font-size: 32pt;
+    margin-right: 20px;
+}
+
+.post {
+    margin-bottom: 70px;
+}
+
+.post h1 a, .post h1 a:visited {
+    color: #000000;
+}
+
+#right {
+    text-align: right;
+}
+
+.header-right {
+  float: right;
+}
+
+.quota {
+    font-family: 'Satisfy';
+    font-size: 230%;
+}
+
+.text {
+    font-size: 140%;
+    font-family: 'Montserrat';
+}
+
+.form-control {
+    font-size: 22px;
+}
+
+.movies_10 {
+
+    background: #F4E8C9;
+    position: absolute;
+    float: left;
+    right: 0;
+    width: 350px;
+    height: 1000px;
+    margin-top: 60px;
+    margin-right: 50px;
+    border-style: solid;
+    border-color: white;
+}
+
+.comment {
+    margin-right: 20px;
+    font-size: 24px;
+    font-family: 'Montserrat';
+}
+
+
+body.post {
+    margin: 0;
+    padding: 0;
+}
+
+
+.star-rating{
+	font-size: 0;
+}
+.star-rating__wrap{
+	display: inline-block;
+	font-size: 4rem;
+}
+.star-rating__wrap:after{
+	content: "";
+	display: table;
+	clear: both;
+	font-size: 5rem;
+}
+.star-rating__ico{
+	float: right;
+	padding-left: 2px;
+	cursor: pointer;
+	color: #f2b01e;
+}
+.star-rating__ico:last-child{
+	padding-left: 0;
+}
+.star-rating__input{
+	display: None;
+}
+.star-rating__ico:hover:before,
+.star-rating__ico:hover ~ .star-rating__ico:before,
+.star-rating__input:checked ~ .star-rating__ico:before
+{
+	content: "\2605";
+}
+
+ol.top_ten {
+    font-size: 24px;
+    font-family: 'Lobster', cursive;
+    margin-left: 10px;
+    margin-right: 30px;
+}
+
+li {
+    color: #0B2161
+    font-size: 24px;
+    font-family: 'Montserrat', cursive;
+
+}
+
+
+.numeric {
+    color: #a17f1a;
+    font-size: 18px;
+    font-family: 'Lobster', cursive;
+    display: inline-block;
+
+}
+
+body.empty {
+    background: url("images/landscape.jpg");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+.empty {
+    font-size:48px;
+}
+
+ol.top_ten {
+    color: #434D7E
+}
+
+.checked {
+            color: orange;
+            font-size: 70%
+        }
+
+/*/
+#div_wrap {
+    display: table;
+    position: relative;
+    size: 100%;
+}
+
+
+#div_one{
+    overflow:hidden;
+    vertical-align: bottom;
+    float:right;
+    display: table-cell;
+
+}
+
+#div_two {
+    overflow:hidden;
+    float:left;
+    display: table-cell;
+
+}
+
+ //*/

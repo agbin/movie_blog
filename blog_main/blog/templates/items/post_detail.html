@@ -1,0 +1,186 @@
+{% extends 'items/base.html' %}
+{% load static %}
+{% block content %}
+    <head>
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+    </head>
+
+        {% if post.background %}
+            <body background="../..{{ post.background.url }}" class="background1"></body>
+        {% elif post.background == 'empty' %}
+            <body background="../../media/items/2018/10/16/landscape.jpg" class="background1"></body>
+        {% else %}
+            <body background="../../media/items/2018/10/16/landscape.jpg" class="background1"></body>
+        {% endif %}
+
+    <body>
+        <div class="post">
+            {% if post.published_date %}
+            <div class="date" id="right">
+                {{ post.published_date }}
+            </div>
+            {% endif %}
+            {% if user.is_authenticated %}
+                <a class="btn btn-default pull-right" href="{% url 'post_edit' pk=post.pk %}"><span class="glyphicon glyphicon-pencil"></span></a>
+            {% endif %}
+            <h1>{{ post.title }}
+                <!--{% if post.rating_average|floatformat:"0" == '5' %}-->
+                    <!--{% for i in "nnnnn" %}-->
+                        <!--<span class="fa fa-star checked"></span>-->
+                    <!--{% endfor %}-->
+                <!--{% endif %}-->
+                <!--{% if post.rating_average|floatformat:"0" == '4' %}-->
+                    <!--{% for i in "nnnn" %}-->
+                        <!--<span class="fa fa-star checked"></span>-->
+                    <!--{% endfor %}-->
+                <!--{% endif %}-->
+                <!--{% if post.rating_average|floatformat:"0" == '3' %}-->
+                    <!--{% for i in "nnn" %}-->
+                        <!--<span class="fa fa-star checked"></span>-->
+                    <!--{% endfor %}-->
+                <!--{% endif %}-->
+                <!--{% if post.rating_average|floatformat:"0" == '2' %}-->
+                    <!--{% for i in "nn" %}-->
+                        <!--<span class="fa fa-star checked"></span>-->
+                    <!--{% endfor %}-->
+                <!--{% endif %}-->
+                <!--{% if post.rating_average|floatformat:"0" == '1' %}-->
+                    <!--{% for i in "n" %}-->
+                        <!--<span class="fa fa-star checked"></span>-->
+                    <!--{% endfor %}-->
+                <!--{% endif %}-->
+            </h1>
+            <div class="quota">
+                <p>{{ post.quota }}</p>
+            </div>
+                <div class="text">
+                    <div style="float: right;">
+                        {% if post.movie_image %}
+                            <img src="{{ post.movie_image.url }}" width="350px" hspace="20" class="img-thumbnail">
+                        {% elif post.movie_image == 'empty' %}
+                            <img src="media/items/2018/10/30/undefined.jpg" width="350px" hspace="20" class="img-thumbnail">
+                        {% endif %}
+
+                    </div>
+                    <p>{{ post.text }}</p><br>
+                </div>
+            <div style="text-align: center"><img src="  {% if post.movie_image_b %}
+                                                            {{ post.movie_image_b.url }}
+                                                        {% else %}
+                                                            media/items/2018/10/30/undefined.jpg
+                                                        {% endif %}"
+                                                    width="600px" class="img-thumbnail"></div><br><br>
+            <h1 align="center">Dodaj komentarz</h1><br><br>
+            <div class="box">
+                <form action="{% url 'post_detail' post.id %}" method="post" id="danger" style="font-size: 18px">
+                    {% csrf_token %}
+                    <p>Oceń film..</p>
+                    <div class="star-rating">
+                      <div class="star-rating__wrap">
+                        <input class="star-rating__input" id="star-rating-5" type="radio" name="rating" value="5"/>
+                        <label class="star-rating__ico fa fa-star-o fa-lg" for="star-rating-5" title="5 out of 5 stars"></label>
+                        <input class="star-rating__input" id="star-rating-4" type="radio" name="rating" value="4"/>
+                        <label class="star-rating__ico fa fa-star-o fa-lg" for="star-rating-4" title="4 out of 5 stars"></label>
+                        <input class="star-rating__input" id="star-rating-3" type="radio" name="rating" value="3"/>
+                        <label class="star-rating__ico fa fa-star-o fa-lg" for="star-rating-3" title="3 out of 5 stars"></label>
+                        <input class="star-rating__input" id="star-rating-2" type="radio" name="rating" value="2"/>
+                        <label class="star-rating__ico fa fa-star-o fa-lg" for="star-rating-2" title="2 out of 5 stars"></label>
+                        <input class="star-rating__input" id="star-rating-1" type="radio" name="rating" value="1"/>
+                        <label class="star-rating__ico fa fa-star-o fa-lg" for="star-rating-1" title="1 out of 5 stars"></label>
+                      </div>
+                    </div><br>
+                    <img src="{% static 'items/images/if_user_1287507.png' %}" style="max-width:5%"/>
+                    {{form}}
+                    <input type="submit" value="Wduś guzik" class="btn btn-success btn-lg">
+                </form><br>
+                {% for comment in comments %}
+                   <div class="col-md-8">
+                       <div class="">
+                           <hr>
+                           <div class="date">
+                               <strong>{{ comment.name }}</strong>,
+                               {{ comment.created_date }},<br>
+                               {% if comment.rating|floatformat:"0" == '5' %}
+                                  {% for i in "nnnnn" %}
+                                      <span class="fa fa-star checked"></span>
+                                  {% endfor %}
+                                  ({{ comment.rating }}/5)
+                               {% endif %}
+                               {% if comment.rating|floatformat:"0" == '4' %}
+                                  {% for i in "nnnn" %}
+                                      <span class="fa fa-star checked"></span>
+                                  {% endfor %}
+                                  ({{ comment.rating }}/5)
+                               {% endif %}
+                               {% if comment.rating|floatformat:"0" == '3' %}
+                                  {% for i in "nnn" %}
+                                      <span class="fa fa-star checked"></span>
+                                  {% endfor %}
+                                  ({{ comment.rating }}/5)
+                               {% endif %}
+                               {% if comment.rating|floatformat:"0" == '2' %}
+                                  {% for i in "nn" %}
+                                      <span class="fa fa-star checked"></span>
+                                  {% endfor %}
+                                  ({{ comment.rating }}/5)
+                               {% endif %}
+                               {% if comment.rating|floatformat:"0" == '1' %}
+                                  {% for i in "n" %}
+                                      <span class="fa fa-star checked"></span>
+                                  {% endfor %}
+                                  ({{ comment.rating }}/5)
+                               {% endif %}
+                           </div>
+                           <div class="Comment">{{comment.text}}</div><br>
+                       </div>
+                   </div>
+                {% endfor %}
+           </div>
+        </div>
+    </div>
+{% endblock %}
+{% block top %}
+    <h2 align="center">Last 5 Comments:</h2><br>
+            <ol class="top_ten">
+                {% for comment in comments_last_ten|slice:":5" %}
+                        <li><a href=""></a>
+                            <h4 style="10px"> {{ comment.name }}, {{ comment.created_date }}, </h4>
+                            <h3 style="display:inline">
+                                {% if comment.rating|floatformat:"0" == '5' %}
+                                    {% for i in "nnnnn" %}
+                                        <span class="fa fa-star checked"></span>
+                                    {% endfor %}
+                                {% endif %}
+                                {% if comment.rating|floatformat:"0" == '4' %}
+                                    {% for i in "nnnn" %}
+                                        <span class="fa fa-star checked"></span>
+                                    {% endfor %}
+                                {% endif %}
+                                {% if comment.rating|floatformat:"0" == '3' %}
+                                    {% for i in "nnn" %}
+                                        <span class="fa fa-star checked"></span>
+                                    {% endfor %}
+                                {% endif %}
+                                {% if comment.rating|floatformat:"0" == '2' %}
+                                    {% for i in "nn" %}
+                                        <span class="fa fa-star checked"></span>
+                                    {% endfor %}
+                                {% endif %}
+                                {% if comment.rating|floatformat:"0" == '1' %}
+                                    {% for i in "n" %}
+                                        <span class="fa fa-star checked"></span>
+                                    {% endfor %}
+                                {% endif %}
+                                <p style="display:inline" class="numeric">({{ comment.rating }}/5)</p>
+                            </h3>
+                            <h2><strong>{{ comment.text }}</strong></h2>
+                        </li><br>
+                {% empty %}
+                    <div >Ten film nie ma jeszcze żadnego komentarza.<br>Bądź pierwszy.<br>Czekamy na Twoją opinię...</div>
+                {% endfor %}
+            </ol>
+{% endblock top %}
+
+    </body>
+
+<img src='{{ MEDIA_URL }}{{ imagefile }}'>

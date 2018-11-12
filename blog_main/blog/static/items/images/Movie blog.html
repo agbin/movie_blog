@@ -1,0 +1,128 @@
+
+<!-- saved from url=(0029)http://localhost:8000/post/3/ -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>Movie blog</title>
+        <link rel="stylesheet" href="./Movie blog_files/bootstrap.min.css">
+        <link rel="stylesheet" href="./Movie blog_files/bootstrap-theme.min.css">
+        <link rel="stylesheet" href="./Movie blog_files/style.css">
+        <link rel="stylesheet" type="text/css" href="./Movie blog_files/css">
+        <link rel="stylesheet" type="text/css" href="./Movie blog_files/css(1)">
+        <link rel="stylesheet" type="text/css" href="./Movie blog_files/css(2)">
+        <link rel="stylesheet" href="./Movie blog_files/bootstrap.min(1).css" media="screen, projection">
+    </head>
+    <body style="background: " class="details">
+        <div class="page-header">
+            <div class="row">
+
+                <!--add movie-->
+                <a href="http://localhost:8000/post/new" class="top-menu"><span class="glyphicon glyphicon-plus"></span></a>
+
+                <!--title-->
+                <h1><a href="http://localhost:8000/">Movie Blog</a></h1>
+
+
+
+
+
+                <!--<div class="header-center">-->
+                    <form method="GET" action="http://localhost:8000/post/3/">
+                        <div class="col-lg-4"></div>
+                        <div class="col-lg-4 ">
+                            <input type="text" name="q" placeholder="Wpisz tytuł filmu lub jego część.." class="form-control input-lg" style="height: 6%; fo">
+                        </div>
+                        <div class="col-lg-1 ">
+                            <button type="submit" class="form-control btn btn-danger btn-lg" style="height: 6%;"><span class="glyphicon glyphicon-search"></span></button>
+
+                        </div>
+                        <div class="col-lg-3 "></div>
+
+                    </form>
+                <!--</div>-->
+            </div>
+            <div class="row">
+
+
+
+                <!--login-->
+                <div class="header-right">
+                    
+                        <a href="http://localhost:8000/logout/">
+                            <span class="glyphicon glyphicon-off" aria-hidden="true" style="font-size:20px"> logout</span>&nbsp;,
+                            trinity
+                        </a>
+                    
+                </div>
+
+                <!--register-->
+                <div class="header-right">
+                    <a href="http://localhost:8000/signup/">
+                        <span class="glyphicon glyphicon-user" aria-hidden="true" style="font-size:20px"> utwórz konto </span>&nbsp;
+                    </a>
+                </div>
+
+            </div>
+        </div>
+        <div class="content container">
+            <div class="row">
+                <div class="col-md-8">
+
+                
+
+    
+        <div class="post">
+
+            
+            <div class="date" id="right">
+                Oct. 15, 2018, 8:30 p.m.
+            </div>
+            
+            <a class="btn btn-default pull-right" href="http://localhost:8000/post/3/edit/"><span class="glyphicon glyphicon-pencil"></span></a>
+            <h1>I am Legend</h1>
+            <div class="quota">
+                <p>"My name is Robert Neville. I am a survivor living in New York City. I am broadcasting on all AM frequencies. I will be at the South Street Seaport everyday at mid-day, when the sun is highest in the sky. If you are out there... if anyone is out there... I can provide food, I can provide shelter, I can provide security. If there's anybody out there... anybody... please. You are not alone."</p>
+            </div>
+                <div class="text">
+                    <div style="float: right;"><img src="./Movie blog_files/iamlegend1.jpg" width="350px" hspace="20" class="img-thumbnail"></div>
+                    <p>Jestem legendą (ang. I Am Legend) – amerykański film fabularny (horror science-fiction) z 2007 roku, wyreżyserowany przez Francisa Lawrence’a, w którym główną rolę zagrał Will Smith. Jest trzecią, po Ostatnim człowieku na Ziemi (1964) oraz Człowieku Omedze[2] (1971), pełnometrażową adaptacją powieści Richarda Mathesona o tym samym tytule z 1954 roku. Smith wcielił się w postać wirusologa Roberta Neville’a, odpornego na stworzonego przez ludzi śmiercionośnego wirusa, który pierwotnie miał pomóc wyleczyć raka. Żyjąc na opustoszałym w 2012 roku Manhattanie, pracuje on nad stworzeniem lekarstwa dla zarażonych wirusem ludzi, którzy zmienili się w żądne krwi potwory. Warner Bros. pracę nad filmem rozpoczął w 1994 roku, angażując w projekt wielu aktorów i reżyserów, jednak jego produkcja uległa opóźnieniu z powodu problemów budżetowych. Ostatecznie zdjęcia do filmu ruszyły w 2006 roku. Sceny kręcono w wielu znanych miejscach Nowego Jorku, w tym najdroższą w dziejach kina scenę przy moście Brooklińskim, której koszt wyniósł 5 milionów dolarów. Film wszedł do kin 14 grudnia 2007 roku i stał się najbardziej dochodową produkcją, której premiera odbyła się w grudniu. Jestem legendą zarobiło 256 milionów dolarów w samych Stanach Zjednoczonych oraz 329 milionów dolarów za granicą. Łączny dochód, jaki przyniósł film, wynosi 585 milionów dolarów. Akcja filmu zaczyna się ...</p><br>
+                </div>
+            <div style="text-align: center"><img src="./Movie blog_files/i_am_legend3_Vvw6EGM.jpg" width="600px"></div><br><br>
+
+
+            <h1 align="center">Dodaj komentarz</h1><br>
+            <div class="box">
+                <form action="http://localhost:8000/post/3/" method="post" id="danger" style="font-size: 18pt">
+                <input type="hidden" name="csrfmiddlewaretoken" value="8BcGOp2bHAU0uo4sOd70smfl630syykvO47W4tsjKD3wLb0M4EK4PtyFww42PhGC">
+                    <img src="./Movie blog_files/if_user_1287507.png" style="max-width:5%" ;="">
+                    <input type="text" name="name" size="15px" id="id_name" placeholder="Imię:" required="">
+<textarea name="text" rows="10" id="id_text" class="form-control" cols="40" placeholder="Jeżeli oglądałeś ten film albo masz na jego temat jakieś przemyślenia, to pisz.." required=""></textarea>
+                    <input type="submit" value="Wduś guzik" class="btn btn-success btn-lg">
+                </form><br>
+                
+                   <div class="col-md-8">
+                       <div class="">
+                           <hr>
+                           <div class="date"><strong>John</strong>, Oct. 16, 2018, 5:35 p.m.</div>
+                           <div class="Comment">Yeaaah, it's really good movie!</div><br>
+                       </div>
+                   </div>
+                
+                   <div class="col-md-8">
+                       <div class="">
+                           <hr>
+                           <div class="date"><strong>trinity</strong>, Oct. 16, 2018, 3:34 p.m.</div>
+                           <div class="Comment">ok</div><br>
+                       </div>
+                   </div>
+                
+           </div>
+
+
+        </div>
+    
+
+                </div>
+            </div>
+        </div>
+    
+
+</body></html>

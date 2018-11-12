@@ -1,0 +1,110 @@
+{% extends 'items/base.html' %}
+{% load static %}
+
+
+{% block content %}
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+    {% for post in posts %}
+        <body class="home">
+            <div class="post">
+                <div class="date">
+                    <p>published: {{ post.published_date }}</p>
+                </div>
+                <h1><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a>
+                        {% if post.rating_average|floatformat:"0" == '5' %}
+                            {% for i in "nnnnn" %}
+                                <span class="fa fa-star checked"></span>
+                            {% endfor %}
+                        {% endif %}
+                        {% if post.rating_average|floatformat:"0" == '4' %}
+                            {% for i in "nnnn" %}
+                                <span class="fa fa-star checked"></span>
+                            {% endfor %}
+                        {% endif %}
+                        {% if post.rating_average|floatformat:"0" == '3' %}
+                            {% for i in "nnn" %}
+                                <span class="fa fa-star checked"></span>
+                            {% endfor %}
+                        {% endif %}
+                        {% if post.rating_average|floatformat:"0" == '2' %}
+                            {% for i in "nn" %}
+                                <span class="fa fa-star checked"></span>
+                            {% endfor %}
+                        {% endif %}
+                        {% if post.rating_average|floatformat:"0" == '1' %}
+                            {% for i in "n" %}
+                                <span class="fa fa-star checked"></span>
+                            {% endfor %}
+                        {% endif %}
+                </h1>
+                <div class="quota">
+                    <p>{{ post.quota }}</p>
+                </div>
+                <div class="text">
+                    <div style="float: right;"><img src="{{ post.movie_image.url }}" width="350px" hspace="20" class="img-thumbnail"></div>
+                    <p>{{ post.text|truncatewords:200 }}</p>
+                </div>
+            </div>
+            <hr>
+        </body>
+    {% empty %}
+        <body class="empty">
+        <p class="empty">Nie ma tytułu z takim słowem.</p><p>There is no title with this word.</p>
+    {% endfor %}
+{% endblock %}
+{% block top %}
+    <h1 align="center">Top 10:</h1>
+        <ol class="top_ten">
+
+            <!--{% for post in posts_top_list|slice:":10" %}-->
+            <!--{% endfor %}-->
+
+            {% for post in posts_top_list %}
+
+
+
+                    <li><a href="{% url 'post_detail' pk=post.pk %}"><strong>{{ post.title }}</strong></a><br>
+                    <!--{% for i in post.rating_average|floatformat:"0" %}-->
+                    <!--{% endfor %}-->
+
+                    {% if post.rating_average|floatformat:"0" == '5' %}
+                        {% for i in "nnnnn" %}
+                            <span class="fa fa-star checked"></span>
+                        {% endfor %}
+                    {% endif %}
+                    {% if post.rating_average|floatformat:"0" == '4' %}
+                        {% for i in "nnnn" %}
+                            <span class="fa fa-star checked"></span>
+                        {% endfor %}
+                    {% endif %}
+                    {% if post.rating_average|floatformat:"0" == '3' %}
+                        {% for i in "nnn" %}
+                            <span class="fa fa-star checked"></span>
+                        {% endfor %}
+                    {% endif %}
+                    {% if post.rating_average|floatformat:"0" == '2' %}
+                        {% for i in "nn" %}
+                            <span class="fa fa-star checked"></span>
+                        {% endfor %}
+                    {% endif %}
+                    {% if post.rating_average|floatformat:"0" == '1' %}
+                        {% for i in "n" %}
+                            <span class="fa fa-star checked"></span>
+                        {% endfor %}
+                    {% endif %}
+                    <p class="numeric">({{ post.rating_average|floatformat:"1" }}/5)</p>
+                    </li>
+
+            {% endfor %}
+        </ol>
+{% endblock top %}
+
+<img src='{{ MEDIA_URL }}{{ imagefile }}'>
+
+
+
+
+
+
