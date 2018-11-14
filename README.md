@@ -11,7 +11,7 @@ pytz==2018.7 <br  />
 whitenoise==4.1.1 <br  />
 ---
 ## Start-up
-https://http://movies-top-blog.herokuapp.com/
+https://http://movies-top-blog.herokuapp.com/ <br  />
 https://github.com/agbin/movie_blog
 
 ---
