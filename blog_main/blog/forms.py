@@ -4,9 +4,6 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 
 class PostForm(forms.ModelForm):
-    # background = forms.FileField()
-    # movie_image = forms.FileField()
-    # movie_image_b = forms.FileField()
     class Meta:
         model = Post
         fields = ('quota', 'title', 'text', 'background', 'movie_image', 'movie_image_b')

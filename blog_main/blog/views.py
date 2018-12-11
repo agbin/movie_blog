@@ -6,7 +6,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.views import View
 from django.http import HttpResponse
 from django.shortcuts import render_to_response
-from django.db.models import Avg
+from django.db.models import Avg, Count, Sum
 
 
 
@@ -14,24 +14,18 @@ from django.db.models import Avg
 class Post_list(View):
     def get(self, request):
         posts = Post.objects.order_by('published_date').annotate(rating_average=Avg('comment__rating'))
-        # posts_top_list = Post.objects.values('title', 'pk').annotate(rating_average=Avg('comment__rating')).order_by('-rating_average')[:10]
-        posts_top_list = Post.objects.values('title', 'pk').annotate(rating_average=Avg('comment__rating')).order_by('-rating_average').exclude(rating_average=None)[:10]
-        # posts_top_list = posts_top_list_all.filter(None)
+        posts_top_list = Post.objects.values('title', 'pk').annotate(num_votes=Count('comment__rating'), rating_average=Avg('comment__rating')).order_by('-rating_average').exclude(rating_average=None)[:10]
         return render(request, 'items/post_list.html', {'posts': posts, 'posts_top_list': posts_top_list })
-
-
-
 
 
 class Post_Detail(View):
     def get(self, request, pk):
         post = get_object_or_404(Post, pk=pk)
-        # posts = Post.objects.order_by('published_date').annotate(rating_average=Avg('comment__rating'))
         comments_last_ten = Comment.objects.filter(post=pk).values('created_date', 'text', 'name', 'rating').order_by('-created_date')
         comments = Comment.objects.filter(post=pk)
         form = CommentAddForm()
         return render(request, 'items/post_detail.html', {'post': post, 'comments': comments, "form": form, 'comments_last_ten': comments_last_ten})
-                                  # , 'posts': posts
+
     def post(self, request, pk):
         posts_top_list = Post.objects.values('title', 'pk').annotate(rating_average=Avg('comment__rating')).order_by('-rating_average')
         form = CommentAddForm(request.POST)
@@ -43,9 +37,6 @@ class Post_Detail(View):
                 post=post,
                 name=form.cleaned_data['name'],
                 rating=rating,
-                # posts_top_list=posts_top_list
-                # rating_average=rating_average
-                # rating=form.cleaned_data['rating'],
             )
             return redirect("post_detail", pk)
 
@@ -63,26 +54,24 @@ def search(request):
     return render(request, 'items/post_list.html', {'form': form, 'posts': posts, 'posts_top_list': posts_top_list})
 
 
-    # def show(request):
-    #     request.session['a'] = request.data.get('a', 'default rating value'),
-    #     return redirect("/")
-
-
 
 
 def post_new(request):
-    if request.method == "POST":
-        form = PostForm(request.POST, request.FILES)
-        if form.is_valid():
-            post = form.save(commit=False)
-            post.author = request.user
-            post.published_date = timezone.now()
-            post.save()
-            return redirect('post_detail', pk=post.pk)
-    else:
-        form = PostForm()
-        return render(request, 'items/post_edit.html', {'form': form})
+    if request.user.is_authenticated:
+        if request.method == "POST":
+            form = PostForm(request.POST, request.FILES)
+            if form.is_valid():
+                post = form.save(commit=False)
 
+                post.author = request.user
+                post.published_date = timezone.now()
+                post.save()
+                return redirect('post_detail', pk=post.pk)
+        else:
+            form = PostForm()
+            return render(request, 'items/post_edit.html', {'form': form})
+    else:
+        return render(request, 'items/notlogged.html')
 
 
 class Post_Edit(View):
@@ -91,15 +80,18 @@ class Post_Edit(View):
         form = PostForm(instance=post)
         return render(request, 'items/post_edit.html', {'form': form})
     def post(self, request, pk):
-        post = get_object_or_404(Post, pk=pk)
-        form = PostForm(request.POST, request.FILES, instance=post)
-        if form.is_valid():
-            post = form.save(commit=False)
-            post.author = request.user
-            post.published_date = timezone.now()
-            post.save()
-            # return render(request, 'items/post_edit.html', {'form': form, 'post': post})
-            return redirect('post_detail', pk=post.pk)
+        if request.user.is_authenticated:
+            post = get_object_or_404(Post, pk=pk)
+            form = PostForm(request.POST, request.FILES, instance=post)
+            if form.is_valid():
+                post = form.save(commit=False)
+                post.author = request.user
+                post.published_date = timezone.now()
+                post.save()
+                # return render(request, 'items/post_edit.html', {'form': form, 'post': post})
+                return redirect('post_detail', pk=post.pk)
+        else:
+            return render(request, 'items/notlogged.html')
 
 
 class Login(View):

@@ -1,0 +1,9 @@
+adium-theme-ubuntu==0.3.4
+dj-database-url==0.5.0
+Django==1.11.13
+django-colorfield==0.1.14
+gunicorn==19.9.0
+psycopg2==2.7.6.1
+pytz==2018.4
+unity-lens-photos==1.0
+whitenoise==4.1

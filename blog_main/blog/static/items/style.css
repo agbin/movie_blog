@@ -10,11 +10,13 @@
     font-size: 42pt;
     text-decoration: none;
 }
+.page-header h1 a:hover{color:#f5ead0}
+
 
 body.home {
     /*background: url("../../../media/items/2018/10/15/iamlegend1.jpg");*/
     background: url("images/landscape.jpg");
-    background-repeat: no-repeat;
+
     background-attachment: fixed;
 
 }
@@ -55,6 +57,8 @@ h1, h2, h3, h4 {
     font-size: 32pt;
     margin-right: 20px;
 }
+.top-menu:hover{color:#ECECEC}
+
 
 .post {
     margin-bottom: 70px;
@@ -69,12 +73,77 @@ h1, h2, h3, h4 {
 }
 
 .header-right {
-  float: right;
+    text-align:center;
+    width:60px;
+    height:60px;
+    float:right;
+    background:rgb(255,255,255);
+    border:1px solid rgb(204,204,204);
+    box-shadow:0 2px 4px rgba(0,0,0,0.15), inset 0 0 50px rgba(0,0,0,0.14);
+    border-radius:100px;
+    margin:0 10px 10px 0;
+    color:#181818;
+    padding:15px;
+    display:inline-block;
 }
+.header-right{color:#0515B5};
+.header-right:hover{color:black;};
+
+.register:link{
+    text-decoration: none;
+    display: block;
+    text-align: center;
+}
+.register{color:#222222}
+.register:hover{background:#3b5998, color:#FFF;}
+
+.log:link{
+    text-decoration: none;
+    display: block;
+    font-size:80%;
+
+}
+.log{color:#222222}
+.log:hover{background:#3b5998; color:#FFF;}
+
+
+.header-top-ten {
+    text-align:center;
+    width:60px;
+    height:60px;
+    float:right;
+    background:rgb(255,255,255);
+    border:1px solid rgb(204,204,204);
+    box-shadow:0 2px 4px rgba(0,0,0,0.15), inset 0 0 50px rgba(0,0,0,0.14);
+    border-radius:100px;
+    margin:0 10px 10px 0;
+    color:#a3c2c2;
+    padding:0px;
+    display:inline-block;
+    background:#0073e6
+
+
+}
+
+.header-top-ten:hover{background:#4cbb17;color:#FFF;}
+
+
+#menu-toggle {
+    margin-right:60px;
+
+}
+
+.btn_text {
+    font-family: 'Lobster', cursive;
+
+
+
+    }
+
 
 .quota {
     font-family: 'Satisfy';
-    font-size: 230%;
+    font-size: 130%;
 }
 
 .text {
@@ -86,19 +155,56 @@ h1, h2, h3, h4 {
     font-size: 22px;
 }
 
-.movies_10 {
 
+.movies_10 {
     background: #F4E8C9;
     position: absolute;
     float: left;
     right: 0;
     width: 350px;
-    height: 1000px;
+    height: 1200px;
     margin-top: 60px;
     margin-right: 50px;
     border-style: solid;
     border-color: white;
 }
+/*/
+
+#div_two {
+
+    position: relative;
+    top: 0;
+    float: left;
+    right:-350px;
+    background: #F4E8C9;
+    width: 350px;
+    height: 100%;
+    margin-top: 450px;
+    margin-right: 400px;
+    border-style: solid;
+    border-color: white;
+
+}
+
+/*/
+/*/
+.box{
+    position: absolute;
+    top: 0;
+    right: -250px;
+    background: red;
+    width: 250px;
+    height: 100%;
+    margin-top: 450px;
+    margin-right: 400px;
+    border-style: solid;
+    border-color: white;
+    transition: .3s;
+}
+.active{
+    right:0;
+}
+/*/
 
 .comment {
     margin-right: 20px;
@@ -110,12 +216,15 @@ h1, h2, h3, h4 {
 body.post {
     margin: 0;
     padding: 0;
+    position:relative;
+    display:inline-block;
 }
 
 
 .star-rating{
 	font-size: 0;
 }
+
 .star-rating__wrap{
 	display: inline-block;
 	font-size: 4rem;
@@ -149,7 +258,7 @@ ol.top_ten {
     font-size: 24px;
     font-family: 'Lobster', cursive;
     margin-left: 10px;
-    margin-right: 30px;
+    margin-right: 10px;
 }
 
 li {
@@ -160,12 +269,15 @@ li {
 }
 
 
-.numeric {
+numeric {
     color: #a17f1a;
-    font-size: 18px;
+    font-size: 10px;
     font-family: 'Lobster', cursive;
     display: inline-block;
+}
 
+#total {
+    font-size:8 px;
 }
 
 body.empty {
@@ -184,7 +296,7 @@ ol.top_ten {
 
 .checked {
             color: orange;
-            font-size: 70%
+            font-size: 70%;
         }
 
 /*/
@@ -209,5 +321,39 @@ ol.top_ten {
     display: table-cell;
 
 }
+//*/
 
- //*/
+@import url(//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css);
+.social{
+    text-align:center;
+    width:60px;
+    height:60px;
+    float:left;
+    background:rgb(255,255,255);
+    border:1px solid rgb(204,204,204);
+    box-shadow:0 2px 4px rgba(0,0,0,0.15), inset 0 0 50px rgba(0,0,0,0.14);
+    border-radius:100px;
+    margin:0 10px 10px 0;
+    padding:15px;
+    display:inline-block;
+    color:#181818;
+}
+
+
+.google-pluse:hover{background:#DD4B39;color:#FFF;}
+.facebook:hover{background:#3b5998;color:#FFF;}
+.twitter:hover{background:#00acee;color:#FFF;}
+.pinterest:hover{background:#c8232c;color:#FFF;}
+.linkedin:hover{background:#0e76a8;color:#FFF;}
+.youtube:hover{background:#c4302b;color:#FFF;}
+
+.bounce {
+    font-family:Lobster;
+    font-size:200%;
+}
+
+.button_content {
+    font-family: 'Lobster', cursive;
+    font-size: 36px;
+
+}

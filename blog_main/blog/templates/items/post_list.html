@@ -1,16 +1,12 @@
 {% extends 'items/base.html' %}
 {% load static %}
 
-
 {% block content %}
-<head>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-</head>
     {% for post in posts %}
         <body class="home">
             <div class="post">
                 <div class="date">
-                    <p>published: {{ post.published_date }}</p>
+                    <p>{{ post.author }}, published: {{ post.published_date }}</p>
                 </div>
                 <h1><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a>
                         {% if post.rating_average|floatformat:"0" == '5' %}
@@ -48,63 +44,80 @@
                 </div>
             </div>
             <hr>
-        </body>
     {% empty %}
-        <body class="empty">
-        <p class="empty">Nie ma tytułu z takim słowem.</p><p>There is no title with this word.</p>
+        <body class="home">
+            <div class="post"></div>
+                <h1 class="empty">Niestety nie mamy filmu, którego szukasz.</h1><h3>Sorry we don't have a title you are looking for.</h3>
+            </div>
     {% endfor %}
 {% endblock %}
 {% block top %}
-    <h1 align="center">Top 10:</h1>
-        <ol class="top_ten">
-
-            <!--{% for post in posts_top_list|slice:":10" %}-->
-            <!--{% endfor %}-->
-
-            {% for post in posts_top_list %}
-
-
-
-                    <li><a href="{% url 'post_detail' pk=post.pk %}"><strong>{{ post.title }}</strong></a><br>
-                    <!--{% for i in post.rating_average|floatformat:"0" %}-->
-                    <!--{% endfor %}-->
-
-                    {% if post.rating_average|floatformat:"0" == '5' %}
-                        {% for i in "nnnnn" %}
-                            <span class="fa fa-star checked"></span>
-                        {% endfor %}
-                    {% endif %}
-                    {% if post.rating_average|floatformat:"0" == '4' %}
-                        {% for i in "nnnn" %}
-                            <span class="fa fa-star checked"></span>
-                        {% endfor %}
-                    {% endif %}
-                    {% if post.rating_average|floatformat:"0" == '3' %}
-                        {% for i in "nnn" %}
-                            <span class="fa fa-star checked"></span>
-                        {% endfor %}
-                    {% endif %}
-                    {% if post.rating_average|floatformat:"0" == '2' %}
-                        {% for i in "nn" %}
-                            <span class="fa fa-star checked"></span>
-                        {% endfor %}
-                    {% endif %}
-                    {% if post.rating_average|floatformat:"0" == '1' %}
-                        {% for i in "n" %}
-                            <span class="fa fa-star checked"></span>
-                        {% endfor %}
-                    {% endif %}
-                    <p class="numeric">({{ post.rating_average|floatformat:"1" }}/5)</p>
-                    </li>
-
-            {% endfor %}
-        </ol>
+            <form action="#menu-toggle">
+                <input type="submit" value="&#xf064" class="btn btn-success btn-sm fas fa-share fa-rotate-270 header-right" id="hide_top" aria-hidden="true" style="background-color:#FFF; width:30px; height:30px; font-size:20px; align:left; padding:5px; float:left;"/>
+            </form><br>
+            <div id="movies">
+                <ol class="top_ten">
+                    {% for post in posts_top_list %}
+                        {% if post.rating_average|floatformat:"0" != '' %}
+                            {% if forloop.counter == 1 %}
+                            <a href="#div_two"><h1 align="center">Top 10:</h1></a>
+                            {% endif %}
+                            <li><a href="{% url 'post_detail' pk=post.pk %}"><strong>{{ post.title }}</strong></a><br>
+                                <p style="display:inline; font-size:24px">{{ post.rating_average|floatformat:"1" }}/5</p>
+                                {% if post.rating_average|floatformat:"0" == '5' %}
+                                    {% for i in "nnnnn" %}
+                                        <span class="fa fa-star checked"></span>
+                                    {% endfor %}
+                                {% endif %}
+                                {% if post.rating_average|floatformat:"0" == '4' %}
+                                    {% for i in "nnnn" %}
+                                        <span class="fa fa-star checked"></span>
+                                    {% endfor %}
+                                {% endif %}
+                                {% if post.rating_average|floatformat:"0" == '3' %}
+                                    {% for i in "nnn" %}
+                                        <span class="fa fa-star checked"></span>
+                                    {% endfor %}
+                                {% endif %}
+                                {% if post.rating_average|floatformat:"0" == '2' %}
+                                    {% for i in "nn" %}
+                                        <span class="fa fa-star checked"></span>
+                                    {% endfor %}
+                                {% endif %}
+                                {% if post.rating_average|floatformat:"0" == '1' %}
+                                    {% for i in "n" %}
+                                        <span class="fa fa-star checked"></span>
+                                    {% endfor %}
+                                {% endif %}
+                                <p style="display:inline; font-size:24px; margin-left:10px;">{{ post.num_votes }}</p>
+                                <p style="display:inline; font-size:12px">
+                                {% if post.num_votes|floatformat:"0" == '1' %}
+                                    <i class="fas fa-user" style="font-size:36px";></i>
+                                {% elif post.num_votes|floatformat:"0" == '2' %}
+                                    <i class="fas fa-user-friends" style="font-size:36px";></i>
+                                {% else %}
+                                    <i class="fas fa-users" style="font-size:36px";></i>
+                                {% endif %}
+                                </p>
+                            </li>
+                        {% else %}
+                            {% if forloop.counter == 1 %}
+                                <h1 class="quota" style="padding: 5px; font-size:150%">
+                                    <strong>Bilbo Baggins: </strong>"It’s a dangerous business, Frodo, going out your door.
+                                    You step onto the road, and if you don’t keep your feet, there’s no knowing where
+                                    you might be swept off to."<br><br>-- Lord of the Rings: The Fellowship of the Ring (2001)</h1>
+                            {% endif %}
+                        {% endif %}
+                    {% endfor %}
+                </ol>
+            </div>
 {% endblock top %}
+{% block button_top %}
+<form action="#div_two">
+    <input type="submit" value="hide Top 10" class="btn btn-success btn-sm header-top-ten" id="menu-toggle" style="font-size:16px; width: 300px;" />
+</form>
+{% endblock %}
+        </body>
 
 <img src='{{ MEDIA_URL }}{{ imagefile }}'>
-
-
-
-
-
 

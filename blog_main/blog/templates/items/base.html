@@ -9,71 +9,179 @@
         <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Montserrat" >
         <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext">
         <link rel="stylesheet" href="{% static 'items/bootstrap.min.css' %}" media="screen, projection"/>
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+        <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" href="sidebar.css">
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+
     </head>
     <body>
-        <div class="page-header">
-            <div class="row">
+        <div id="wrapper">
+            <div id="page-content-wrapper">
+                <div class="page-header">
+                    <div class="row">
+                        <!--add movie-->
+                        <a href="{% url 'post_new' %}" class="top-menu"><span class="glyphicon glyphicon-plus"></span></a>
+                        <!--title-->
+                        <h1><a href="/" class="start">Movie Blog</a></h1>
+                        <!--search-->
+                            <form method="GET" action="{% url 'search' %}">
+                                <div class="col-lg-3"></div>
+                                <div class="col-lg-4 ">
+                                    <input type="text" name="q" placeholder="Wpisz tytuł filmu lub jego część.."  class="form-control input-lg" style="height: 46px; "/>
+                                </div>
+                                <div class="col-lg-1 ">
+                                    <button type="submit" class="form-control btn btn-danger btn-lg" style="height: 46px; margin-bottom:15px;"><span class="glyphicon glyphicon-search"></span></button>
+                                </div>
+                                <div class="col-lg-3 "></div>
+                                <div class="col-lg-1"></div>
+                            </form>
+                    </div><br><br>
+                    <div class="row"></div>
+                    <div class="row">
+                        <a href="http://plus.google.com" class="social google-pluse"><i class="fa fa-google-plus fa-2x"></i></a>
+                        <a href="http://facebook.com" class="social facebook"><i class="fa fa-facebook fa-2x"></i></a>
+                        <a href="http://twitter.com" class="social twitter"><i class="fa fa-twitter fa-2x"></i></a>
+                        <a href="http://pinterest.com" class="social pinterest"><i class="fa fa-pinterest fa-2x"></i></a>
+                        <a href="http://linkedin.com" class="social linkedin"><i class="fa fa-linkedin fa-2x"></i></a>
+                        <a href="http://youtube.com" class="social youtube"><i class="fa fa-youtube fa-2x"></i></a>
 
-                <!--add movie-->
-                <a href="{% url 'post_new' %}" class="top-menu"><span class="glyphicon glyphicon-plus"></span></a>
+                        <!--login-->
+                        {% if user.is_authenticated %}
+                            <a href="{% url 'logout' %}" class="header-right log"><i class="fa fa-sign-out"><br>logout,</i>
+                                {{request.user.username}}
+                            </a>
+                        {% else %}
+                            <a href="{% url 'login' %}" class="header-right log"><i class="fa fa-sign-in "><br>login</i></a>
+                        {% endif %}
+                        <!--register-->
+                        <a href="{% url 'signup' %}" class="header-right log"><i class="fas fa-user-plus fa-2x"></i></a>
 
-                <!--title-->
-                <h1><a href="/">Movie Blog</a></h1>
-
-                <!--search-->
-                    <form method="GET" action="{% url 'search' %}">
-                        <div class="col-lg-4"></div>
-                        <div class="col-lg-4 ">
-                            <input type="text" name="q" placeholder="Wpisz tytuł filmu lub jego część.."  class="form-control input-lg" style="height: 6%; "/>
-                        </div>
-                        <div class="col-lg-1 ">
-                            <button type="submit" class="form-control btn btn-danger btn-lg" style="height: 6%;"><span class="glyphicon glyphicon-search"></span></button>
-                        </div>
-                        <div class="col-lg-3 "></div>
-                    </form>
-            </div>
-            <div class="row">
-
-                <!--login-->
-                <div class="header-right">
-                    {% if user.is_authenticated %}
-                        <a href="{% url 'logout' %}">
-                            <span class="glyphicon glyphicon-off" aria-hidden="true" style="font-size:20px"> logout</span>&nbsp;,
-                            {{request.user.username}}
-                        </a>
-                    {% else %}
-                        <a href="{% url 'login' %}">
-                            <span class="glyphicon glyphicon-off" aria-hidden="true" style="font-size:20px"> login</span>&nbsp;
-                        </a>
-                    {% endif %}
-                </div>
-
-                <!--register-->
-                <div class="header-right">
-                    <a href="{% url 'signup' %}">
-                        <span class="glyphicon glyphicon-user" aria-hidden="true" style="font-size:20px"> utwórz konto </span>&nbsp;
-                    </a>
-                </div>
-            </div>
-        </div>
-        <div class="content container">
-            <div id="div_wrap">
-
-                <div id="div_one">
-                    <div class="col-md-8">
-                    {% block content %}
-
-                    {% endblock %}
-                    </div>
-                </div>
-                <div id="div_two">
-                    <div class="movies_10">
-                        {% block top %}
+                        {% block button_top %}
 
                         {% endblock %}
                     </div>
                 </div>
             </div>
+            <div class="content container">
+                <div id="sidebar-wrapper">
+                <div id="div_wrap">
+                    <div id="div_one">
+                        <div class="col-md-8">
+                        {% block content %}
+
+                        {% endblock %}
+                        </div>
+                    </div>
+                    <div id="div_two" >
+                        <div class="movies_10">
+                            {% block top %}
+
+                            {% endblock %}
+                        </div>
+                    </div>
+                </div>
+                </div>
+            </div>
         </div>
+
+        <script>
+        $(function(){
+            var text_input_btn = $('.header-top-ten');
+            text_input_btn.css("font-size", "24px");
+
+            $('#menu-toggle').on('click', function(){
+                $("#div_two").toggle();
+            });
+            $('#comments-toggle').on('click', function(){
+                $("#div_two").toggle();
+            });
+            $('#hide_top').on('click', function(){
+                $("#div_two").hide();
+            });
+            $('#hide_comments').on('click', function(){
+                $("#div_two").hide();
+            });
+        });
+
+
+            jQuery('#menu-toggle').click(function(){
+               var btn_toggle = document.getElementById("menu-toggle");
+            if (btn_toggle.value=="Top 10")
+                btn_toggle.value="hide Top 10";
+            else
+                btn_toggle.value = "Top 10";
+            });
+
+
+            jQuery('#hide_top').click(function(){
+               var btn_toggle = document.getElementById("menu-toggle");
+            if (btn_toggle.value=="hide Top 10")
+                btn_toggle.value="Top 10";
+            });
+
+
+            jQuery('#comments-toggle').click(function(){
+               var btn_toggle_comments = document.getElementById("comments-toggle");
+            if (btn_toggle_comments.value=="hide Last 5 Comments")
+                btn_toggle_comments.value="Last 5 Comments";
+            else
+                btn_toggle_comments.value = "hide Last 5 Comments";
+            });
+
+
+            jQuery('#hide_comments').click(function(){
+               var btn_toggle_comments = document.getElementById("comments-toggle");
+            if (btn_toggle_comments.value=="hide Last 5 Comments")
+                btn_toggle_comments.value="Last 5 Comments";
+            });
+
+
+            $(function(){
+                $("#menu-toggle").click(function(){
+                $('html, body').animate({ scrollTop: $('#div_two').offset().top }, 'slow');
+                })
+                $('#hide_comments').click(function(){
+                $('html, body').animate({ scrollTop: $("#menu-toggle").offset().top }, 'slow');
+                })
+            $(window).scrollTop();
+            });
+
+            <!--alert($(document).width());-->
+            <!--alert($("#div_one").width());-->
+            <!--alert($("#div_two").width());-->
+
+            $(function(){
+                var div = $("#div_two").css("width","20%");
+                var doc = $(document).width();
+                var main_div =  $("#div_one").css("width","80%");
+                var btn_toggle = document.getElementById("menu-toggle");
+                if ($(doc - main_div < div == true ) )
+                    btn_toggle.value = "Top 10";
+                else
+                    btn_toggle.value = "hide Top 10";
+            });
+
+            $(function(){
+                var div = $("#div_two").css("width","20%");
+                var doc = $(document).width();
+                var main_div =  $("#div_one").css("width","80%");
+                var btn_toggle_comments = document.getElementById("comments-toggle");
+                if ($(doc - main_div < div == true ) )
+                    btn_toggle_comments.value = "Last 5 Comments";
+                else
+                    btn_toggle.value = "hide Last 5 Comments";
+            });
+
+
+        </script>
+
+        <script src="js/app.js" type="text/javascript"></script>
     </body>
 </html>
